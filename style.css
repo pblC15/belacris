@@ -1,0 +1,258 @@
+/* =========================================================
+   Bela Cris · Nail Designer — estilos
+   Cores retiradas do logótipo: magenta do verniz + dourado da tampa
+   ========================================================= */
+:root {
+  --magenta: #B0124F;
+  --magenta-deep: #7E0B37;
+  --gold: #A9782E;
+  --gold-light: #D9B36A;
+  --blush: #FBF2F5;
+  --petal: #F4DCE5;
+  --ink: #2E0B1B;
+  --ink-soft: #5E3A4A;
+  --white: #FFFFFF;
+
+  --serif: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
+  --sans: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+
+  --wrap: 68rem;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+p { margin: 0 0 1em; }
+
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.skip {
+  position: absolute; left: 1rem; top: -3rem; z-index: 100;
+  background: var(--ink); color: var(--white); padding: .5rem 1rem; border-radius: 6px;
+}
+.skip:focus { top: 1rem; }
+
+.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+
+/* ---------------- Botões ---------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .85rem 1.6rem;
+  border-radius: 999px;
+  background: var(--magenta);
+  color: var(--white);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: .02em;
+  text-decoration: none;
+  border: 1px solid var(--magenta);
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.btn:hover { background: var(--magenta-deep); border-color: var(--magenta-deep); }
+.btn__icon { width: 1.15rem; height: 1.15rem; fill: currentColor; }
+
+.btn--ghost { background: transparent; color: var(--magenta); border-color: var(--gold-light); }
+.btn--ghost:hover { background: var(--blush); color: var(--magenta-deep); border-color: var(--gold); }
+
+.btn--small { padding: .5rem 1.15rem; font-size: .95rem; }
+
+.btn--light { background: var(--white); color: var(--magenta); border-color: var(--white); }
+.btn--light:hover { background: var(--blush); border-color: var(--blush); color: var(--magenta-deep); }
+.btn--outline-light { background: transparent; color: var(--white); border-color: rgba(255,255,255,.55); }
+.btn--outline-light:hover { background: rgba(255,255,255,.12); border-color: var(--white); }
+
+/* ---------------- Cabeçalho ---------------- */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .7rem clamp(1rem, 4vw, 2.5rem);
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(169,120,46,.18);
+}
+.topbar__brand {
+  display: flex; align-items: center; gap: .6rem;
+  text-decoration: none;
+  font-family: var(--serif); font-size: 1.35rem; font-weight: 500; color: var(--magenta);
+}
+.topbar__brand img { border-radius: 50%; }
+.topbar__nav { display: flex; gap: clamp(1rem, 3vw, 2.25rem); }
+.topbar__nav a {
+  text-decoration: none; font-size: .98rem; color: var(--ink-soft);
+  padding-block: .25rem; border-bottom: 1px solid transparent;
+}
+.topbar__nav a:hover { color: var(--magenta); border-bottom-color: var(--gold-light); }
+
+/* ---------------- Hero ---------------- */
+.hero {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: clamp(1.5rem, 5vw, 3rem) 1.25rem clamp(4rem, 9vw, 6.5rem);
+  background: radial-gradient(ellipse at 50% 35%, var(--white) 55%, var(--blush) 100%);
+  overflow: hidden;
+}
+.hero__logo {
+  width: min(100%, 44rem);
+  mix-blend-mode: multiply; /* funde o fundo branco do logótipo com o gradiente */
+}
+.hero__lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.45rem, 3.2vw, 2.1rem);
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 30ch;
+  margin: .25rem auto 1.75rem;
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: center; }
+
+/* A pincelada de verniz */
+.stroke {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  width: 100%; height: clamp(50px, 8vw, 110px);
+  pointer-events: none;
+}
+.stroke__path {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: paint 2.4s cubic-bezier(.65,.05,.36,1) .5s forwards;
+}
+@keyframes paint { to { stroke-dashoffset: 0; } }
+
+/* ---------------- Títulos de secção ---------------- */
+.section-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--magenta);
+  margin: 0 0 .5rem;
+}
+.section-intro { color: var(--ink-soft); max-width: 46ch; margin-bottom: 2.75rem; }
+
+/* ---------------- Serviços ---------------- */
+.services { padding: clamp(4rem, 9vw, 6.5rem) 0; }
+.service-list { list-style: none; margin: 0; padding: 0; }
+.service {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  align-items: center;
+  gap: 1.25rem 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(169,120,46,.28);
+}
+.service:last-child { border-bottom: 1px solid rgba(169,120,46,.28); }
+.service__icon { width: 3rem; height: 3rem; fill: var(--magenta); stroke: var(--magenta); }
+.service__icon .gold { fill: var(--gold-light); }
+.service__icon .gold-stroke { stroke: var(--gold); }
+.service__name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.75rem, 3.6vw, 2.4rem);
+  line-height: 1.15;
+  margin: 0 0 .3rem;
+  color: var(--ink);
+}
+.service__text { margin: 0; color: var(--ink-soft); max-width: 52ch; }
+.service__link {
+  font-size: .95rem; color: var(--magenta); text-decoration: none; white-space: nowrap;
+  border-bottom: 1px solid var(--gold-light); padding-bottom: .15rem;
+}
+.service__link:hover { color: var(--magenta-deep); border-bottom-color: var(--magenta); }
+
+/* ---------------- Sobre ---------------- */
+.about { background: var(--blush); padding: clamp(4rem, 9vw, 6rem) 0; }
+.about__grid {
+  display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center;
+  max-width: 54rem;
+}
+.about__mark {
+  width: clamp(7rem, 16vw, 10rem);
+  border-radius: 50%;
+  border: 1px solid var(--gold-light);
+  box-shadow: 0 0 0 8px var(--white);
+}
+.about p { font-family: var(--serif); font-size: 1.3rem; line-height: 1.6; max-width: 55ch; }
+.about__sign { font-style: italic; color: var(--gold); margin: 0; }
+
+/* ---------------- Local ---------------- */
+.location { padding: clamp(4rem, 9vw, 6.5rem) 0; }
+.location__grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.location__place { font-family: var(--serif); font-size: 1.6rem; color: var(--ink); margin-bottom: .5rem; }
+.location p:not(.location__place) { color: var(--ink-soft); max-width: 40ch; margin-bottom: 1.75rem; }
+.map {
+  aspect-ratio: 4 / 3;
+  border-radius: 18px 18px 18px 120px; /* eco da curva do frasco */
+  overflow: hidden;
+  border: 1px solid var(--petal);
+}
+.map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ---------------- Chamada final ---------------- */
+.cta {
+  background: linear-gradient(140deg, var(--magenta) 0%, var(--magenta-deep) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: clamp(4rem, 9vw, 6rem) 0;
+}
+.cta__title {
+  font-family: var(--serif); font-weight: 500; font-style: italic;
+  font-size: clamp(2.3rem, 5.5vw, 3.6rem); line-height: 1.1; margin: 0 0 .6rem;
+}
+.cta__text { color: rgba(255,255,255,.85); margin-bottom: 2rem; }
+
+/* ---------------- Rodapé ---------------- */
+.footer {
+  text-align: center; padding: 2rem 1rem 2.5rem;
+  font-size: .9rem; color: var(--ink-soft);
+}
+.footer p { margin: 0; }
+
+/* ---------------- Botão flutuante ---------------- */
+.fab {
+  position: fixed; right: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 60;
+  width: 3.5rem; height: 3.5rem; border-radius: 50%;
+  display: none; place-items: center;
+  background: #25D366; color: var(--white);
+  box-shadow: 0 6px 18px rgba(46,11,27,.25);
+}
+.fab svg { width: 1.8rem; height: 1.8rem; fill: currentColor; }
+
+/* ---------------- Responsivo ---------------- */
+@media (max-width: 760px) {
+  .topbar__nav { display: none; }
+  .service { grid-template-columns: 3rem 1fr; align-items: start; }
+  .service__link { grid-column: 2; justify-self: start; }
+  .about__grid { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .about p { margin-inline: auto; }
+  .location__grid { grid-template-columns: 1fr; }
+  .map { border-radius: 18px 18px 18px 70px; }
+  .fab { display: grid; }
+  .footer { padding-bottom: 5.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stroke__path { animation: none; stroke-dashoffset: 0; }
+}
